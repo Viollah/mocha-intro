@@ -199,3 +199,12 @@ describe('mostProfitableDepartment',function(){
         })
 
 });
+describe('transportFee',function(){
+    it("This should show which shift it is and how much it cost",function(){
+        assert.equal(transportFee('morning'), 'R20');
+
+        assert.equal(transportFee('afternoon'), 'R10');
+
+        assert.equal(transportFee('nightshift'), 'free', 'for night shift return free');
+    })
+});
