@@ -7,6 +7,11 @@ describe('this test' , function(){
     it("This should greet Viollah with 'Hello, Viollah'",function(){
           assert.equal("Hello, Viollah",greet("Viollah"))
     });
-    
+    it("This should show either 'weekDay or yearMonth'",function(){
+        assert.equal(isDayName('Saturday'), true);
+        assert.equal(isDayName('Monday'), true);
+        assert.equal(isDayName('January'), false, 'January is not a day');
+
+    });
 
 });
