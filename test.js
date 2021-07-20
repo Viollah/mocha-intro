@@ -33,7 +33,12 @@ describe('CheckReg',function(){
 });
 describe('CountAllFromTown',function(){
     it("This should show how many town",function(){
-        assert.equal(fromStellies, 3);
+        var fromStellies = countAllFromTown('CL 124,CY 567,CL 345, CJ 456,CL 341','CL');
+
+        assert.equal(fromStellies, 3)
+        var fromKuilsriver = countAllFromTown('CJ 124,CY 567,CL 345, CF 456, CL 341','CF');
+
+        assert.equal(fromKuilsriver, 1)
         
     })
 });
@@ -45,7 +50,7 @@ describe('CountAllPaarl',function(){
     })
 });
 
-describe('totalphonebill',function(){
+describe('totalPhoneBill',function(){
     it("This is the total phone bill",function(){
         assert.equal('R7.45', totalPhoneBill('call, sms, call, sms, sms'));
         assert.equal('R3.40', totalPhoneBill('call, sms'));
@@ -62,6 +67,39 @@ describe('fromWhere',function(){
 });
 describe('findItemsOver20',function(){
     it("This should show all the items that are over 20", function(){
+        var itemList = [
+            {name : 'apples', qty : 10},
+            {name : 'pears', qty : 37},
+            {name : 'bananas', qty : 27},
+            {name : 'apples', qty : 3},
+        ];
+        
+        var results = [
+            {name : 'pears', qty : 37},
+            {name : 'bananas', qty : 27},
+        ];
+        
+        var itemList2 = [
+            {name : 'apples', qty : 10},
+            {name : 'pears', qty : 19},
+            {name : 'bananas', qty : 17},
+            {name : 'apples', qty : 3},
+        ];
+        
+        var results2 = [];
+        
+        var itemList3 = [
+            {name : 'apples', qty : 40},
+            {name : 'pears', qty : 20},
+            {name : 'bananas', qty : 23},
+            {name : 'apples', qty : 37}
+        ];
+        
+        var results3 = [
+            {name : 'apples', qty : 40},
+            {name : 'bananas', qty : 23},
+            {name : 'apples', qty : 37}
+        ];
         assert.deepEqual(results, findItemsOver20(itemList));
         assert.deepEqual(results2, findItemsOver20(itemList2));
         assert.deepEqual(results3, findItemsOver20(itemList3));
@@ -69,24 +107,95 @@ describe('findItemsOver20',function(){
 });
 describe('findItemsOver',function(){
     it("This should display items that are over ",function(){
+        var itemList = [
+            {name : 'apples', qty : 10},
+            {name : 'pears', qty : 37},
+            {name : 'bananas', qty : 27},
+            {name : 'apples', qty : 3},
+        ];
+        
+        var results = [
+            {name : 'pears', qty : 37},
+            {name : 'bananas', qty : 27},
+        ];
+        
+        var itemList2 = [
+            {name : 'apples', qty : 10},
+            {name : 'pears', qty : 19},
+            {name : 'bananas', qty : 17},
+            {name : 'apples', qty : 3},
+        ];
+        
+        var results2 = [];
+        
+        var itemList3 = [
+            {name : 'apples', qty : 40},
+            {name : 'pears', qty : 20},
+            {name : 'bananas', qty : 23},
+            {name : 'apples', qty : 37}
+        ];
+        
+        var results3 = [
+            {name : 'apples', qty : 40},
+            {name : 'bananas', qty : 23},
+            {name : 'apples', qty : 37}
+        ];
          assert.deepEqual(results, findItemsOver(itemList, 20));
          assert.deepEqual(results2, findItemsOver(itemList2, 20));
          assert.deepEqual(results3, findItemsOver(itemList3, 20));
     })
 });
-describe('mostprofitabledepartment',function(){
+describe('mostProfitableDepartment',function(){
     it("This should show from the departments which one is profitable",function(){
-        assert.equal('outdoor', mostProfitableDepartment(salesData), "Most profitable department is 'outdoor' for dataset 1");
+        var salesData = [
+            {department : 'hardware', sales : 4500, day : 'Monday'},
+            {department : 'outdoor', sales : 1500, day : 'Monday'},
+            {department : 'carpentry', sales : 5500, day : 'Monday'},
+            {department : 'hardware', sales : 7500, day : 'Tuesday'},
+            {department : 'outdoor', sales : 2505, day : 'Tuesday'},
+            {department : 'carpentry', sales : 1540, day : 'Tuesday'},
+            {department : 'hardware', sales : 1500, day : 'Wednesday'},
+            {department : 'outdoor', sales : 8507, day : 'Wednesday'},
+            {department : 'carpentry', sales : 8009, day : 'Wednesday'},
+            {department : 'hardware', sales : 12000, day : 'Thursday'},
+            {department : 'outdoor', sales : 18007, day : 'Thursday'},
+            {department : 'carpentry', sales : 6109, day : 'Thursday'},
+            {department : 'hardware', sales : 7005, day : 'Friday'},
+            {department : 'outdoor', sales : 12006, day : 'Friday'},
+            {department : 'carpentry', sales : 16109, day : 'Friday'},
+        ];
+        var salesData2 = [
+            {department : 'electronics', sales : 4500, day : 'Monday'},
+            {department : 'outdoor', sales : 1500, day : 'Monday'},
+            {department : 'carpentry', sales : 5500, day : 'Monday'},
+            {department : 'steelwork', sales : 7500, day : 'Tuesday'},
+            {department : 'outdoor', sales : 2505, day : 'Tuesday'},
+            {department : 'carpentry', sales : 1540, day : 'Tuesday'},
+            {department : 'hardware', sales : 1500, day : 'Wednesday'},
+            {department : 'outdoor', sales : 8507, day : 'Wednesday'},
+            {department : 'carpentry', sales : 8009, day : 'Wednesday'},
+            {department : 'hardware', sales : 12000, day : 'Thursday'},
+            {department : 'carpentry', sales : 6109, day : 'Thursday'},
+            {department : 'hardware', sales : 7005, day : 'Friday'},
+            {department : 'electronics', sales : 12006, day : 'Friday'},
+            {department : 'electronics', sales : 16109, day : 'Saturday'},
+            {department : 'steelwork', sales : 7500, day : 'Tuesday'},
+            {department : 'outdoor', sales : 2505, day : 'Tuesday'},
+            {department : 'carpentry', sales : 1540, day : 'Tuesday'},
+            {department : 'steelwork', sales : 1500, day : 'Wednesday'},
+            {department : 'carpentry', sales : 8009, day : 'Wednesday'},
+        ];
+         assert.equal('outdoor', mostProfitableDepartment(salesData), "Most profitable department is 'outdoor' for dataset 1");
          assert.equal('electronics', mostProfitableDepartment(salesData2), "Most profitable department is 'electronics' for dataset 2");
-
+        
         assert.equal('Thursday', mostProfitableDay(salesData), "Most profitable day is 'Thursday' for dataset 1");
         assert.equal('Wednesday', mostProfitableDay(salesData2), "Most profitable day is 'Wednesday' for dataset 2");
     })
 });
-describe('regCount',function(){
-    it("This should count all the registration available", function(){
-        assert.equal(regCount, 3);
-        assert.equal(regCount, 1);
-    })
+  describe('isFromBellville',function(){
+        it("This regristation should show that it is from Bellville",function(){
+            assert.equal(isFromBellville('CY 123'), true);
+            assert.equal(isFromBellville('CJ 123'), false);
+        })
 
 });
